@@ -1,0 +1,150 @@
+﻿@model List<testProject2.Models.project>
+@{
+    ViewBag.Title = "TimeLine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .find {
+            color: #222222;
+            font: 30px;
+            font-size: 22px;
+        }
+
+        .sec6 .show {
+            position: absolute;
+            background-color: #0c65ed;
+            top: 55%;
+            left: 2.5%;
+            width: 95%;
+            height: 40%;
+            padding: .8rem 0 .8rem 1rem;
+            opacity: .8;
+            transform: rotatey(90deg);
+        }
+
+            .sec6 .show h3 {
+                color: white;
+                font-size: 22px;
+            }
+
+            .sec6 .show p {
+                font-size: 16px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+        .sec6 .work:hover .show {
+            transform: rotatey(0deg);
+            transition: all 0.4s linear;
+        }
+
+        .sec6.work:hover img {
+            box-shadow: 0 0 2rem gray;
+            transition: all .4s ease-in-out;
+        }
+
+        .sec6 .show a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<!-- container -->
+<div class="container">
+    <div class="row" style="margin-top:3rem; margin-bottom:2rem;">
+
+
+        <div class="list-group list-group-transparent mr-4 ">
+            <a class="list-group-item list-group-item-action active"><span class="find col-md-2 m-0 pt-2 ">Find Talent</span></a>
+        </div>
+        <!-- heading  -->
+        <div class="input-group mb-3 col-md-8 ml-0 ">
+            <input type="search" class="form-control" placeholder="Search for project" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fe fe-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+
+        </div>
+
+    </div>
+    <!-- Aside  -->
+    <div class="row">
+        <div class="col-lg-2 order-lg-1 mb-4">
+            <a class="btn btn-block btn-primary mb-6">
+                <img src="~/attach/profilePic/@ViewBag.user.img" class="img-thumbnail" alt="...">
+            </a>
+            <!--View Profile -->
+            <div class="list-group list-group-transparent mb-0">
+                <a href="/User/profile" class="list-group-item list-group-item-action active"><span class="icon mr-3"><i class="fe mdi-face-profile"></i></span>View Profile</a>
+            </div>
+            <!-- Components -->
+            @if (Session["userrole"].ToString() == "Student")
+            {
+                <div class="list-group list-group-transparent mb-0">
+                    <a href="/project/Index" class="list-group-item list-group-item-action"><span class="icon mr-3"><i class="fe fe-download"></i></span>Add New Project</a>
+                </div>
+            }
+        </div>  <!-- Aside  -->
+        <div class="col-lg-2">
+            <div class="form-group">
+                <div class="form-label">My Categories</div>
+                <div>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox1" value="option1" checked>
+                        <span class="custom-control-label">Web Development</span>
+                    </label>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox2" value="option2">
+                        <span class="custom-control-label">Mobile Development</span>
+                    </label>
+                    <label class="custom-control custom-checkbox custom-checkbox/">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox3" value="option3">
+                        <span class="custom-control-label">IOT</span>
+                    </label>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox3" value="option3">
+                        <span class="custom-control-label">GIS</span>
+                    </label>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox3" value="option3">
+                        <span class="custom-control-label">Artificial Intelligence</span>
+                    </label>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="example-inline-checkbox3" value="option3">
+                        <span class="custom-control-label">DataScience</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Time Line  -->
+        <div class="col-lg-8 sec6 row widget mr-2 ">
+            @foreach (var item in Model)
+            {
+
+
+                <div class=" col-md-6  mb-5 ">
+                    <div class="work position-relative">
+                        <img src="~/attach/@item.prototype" class="card-img-top rounded" alt="@item.title">
+                        <div class="show rounded d-flex">
+                            <div>
+                                <h3>@item.title</h3>
+                                <p class="text-white">@item.catalog.name</p>
+                            </div>
+                            @* <a class="d-flex align-items-center ml-auto mr-4 text-white " href="/search/projectDetails/@item.id"><i class="fa fa-eye" aria-hidden="true"></i></a>*@
+                            @Html.ActionLink(" ", "projectDetails", "search", new { id = item.id }, new { @class = "fa fa-eye d-flex align-items-center ml-auto mr-4 text-white ", title = "view details" })
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        </div><!-- Time Line  -->
+    </div>
+</div>
+<!-- end of container  -->

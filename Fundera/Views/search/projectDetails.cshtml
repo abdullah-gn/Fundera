@@ -1,0 +1,394 @@
+﻿@model testProject2.Models.project
+@{
+    ViewBag.Title = "Project Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="project-details">
+    <div class="container">
+        <div class="summary">
+            <h3>@Model.title</h3>
+            <img class="pr-img img-fluid" src="~/attach/@Model.prototype">
+
+            <div class="project-owner">
+                <b>Uploaded By</b>
+                <a class="owner-info" href="/user/profile/@ViewBag.ownerId">
+                    <img src="~/attach/profilePic/@ViewBag.ownerImg" />
+                    @ViewBag.ownerName
+                </a>
+                <div class="upload-date">
+                    at
+                    <span>@Model.Proj_date</span>
+                </div>
+            </div>
+            <div id="projectStatus">
+                <!--(1)check is user is funder {rolrid=2} => (true) Display Button-->
+                @if (Session["userrole"].ToString() == "Funder")
+                {
+                    <!--(2)check fund is funded this project before-->
+                    if (TempData["checkProjectIsFunded"] == null)
+                    {
+                        <button class="fund-project" onclick="AddFund()" id="projectStatus">
+                            Fund This Project
+                        </button>
+                    }
+                    else
+                    {
+                        <!--(3)Check is current Funder Is Fund This Project Before-->
+                        if (TempData["checkUserIsFund"] == null)
+                        {
+                            <button class="fund-project">
+                                Project Funded
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="fund-project" onclick="RemoveFund()">
+                                Remove Funding
+                            </button>
+                        }
+
+                    }
+                }
+            </div>
+        </div>
+        <div class="brief">
+            <h5>Brief</h5>
+            <p>
+                @Model.bref
+            </p>
+        </div>
+        <div class="description">
+            <h5>Description</h5>
+            <p>
+                @Model.description
+            </p>
+        </div>
+        <div class="comments">
+            <div class="new">
+                <div class="reactions">
+                    <b id="noOfReact">@TempData["reactionsNo"]</b>
+                    @if (TempData["checkRaect"] == null)
+                    {
+                        <button class="react far fa-heart" id="react" onclick="react()"></button>
+                    }
+                    else
+                    {
+                        <button class="react fas fa-heart" id="react" onclick="react()"></button>
+                    }
+                </div>
+                <div class="add-one">
+                    <input id="commentContent" type="text" placeholder="Type a comment here..." name="com_content">
+                    <button class="submit fas fa-paper-plane" onclick="sendComent()" id="sendComment"></button>
+                </div>
+            </div>
+
+            <ul class="current" id="d3">
+                @if (Model.comments.Count()==0)
+                {
+                    <li class="h4 text-muted m-5">No Comments</li>
+                }
+                else
+                {
+
+
+                    @*<li id="d3"></li>*@
+                    foreach (var item in Model.comments)
+                    {
+                        <li>
+                            <a href="/user/profile/@item.user.id" style="color:#525252">
+                                <img src="~/attach/profilePic/@item.user.img" />
+                                <span class="name">@item.user.name</span>
+                            </a>
+                            <p>
+                                @item.com_content
+                            </p>
+                            <span class="time">
+                                @item.date
+                            </span>
+                        </li>
+                    }
+
+
+                }
+            </ul>
+            </div>
+    </div>
+</section>
+
+<!--Script add comment-->
+@section scripts{
+    <script>
+        var url = window.location.pathname;
+        var Proj_id = url.substring(url.lastIndexOf('/') + 1);
+        function sendComent() {
+            var result;
+            let comment = $("#commentContent").val();
+            if (comment != "") {
+                $.get(`/search/addComment/${Proj_id}?comment=${comment}`, function (data) {
+                    result = data;
+
+                    $("#d3").prepend(`<li>${result}</li>`);
+                    $("#commentContent").val("");
+                    $(".commentContent").attr("placeholder", "Type a comment here...");
+                });
+            }
+        }
+
+        function react() {
+            var url = window.location.pathname;
+            var Proj_id = url.substring(url.lastIndexOf('/') + 1);
+
+            let t1 = document.getElementById('react').classList.toggle("far")
+            if (t1 == false) {
+                //add react
+                $.get(`/search/addReact/${Proj_id}`, function (data) {
+                    result = data;
+                    $("#noOfReact").text(`${result}`);
+
+                });
+            }
+            let t2 = document.getElementById('react').classList.toggle("fas")
+            if (t2 == false) {
+                //remove react
+                $.get(`/search/removeReact/${Proj_id}`, function (data) {
+                    result = data;
+
+                    $("#noOfReact").text(`${result}`);
+
+                });
+            }
+        }
+        function AddFund() {
+            var url = window.location.pathname;
+            var Proj_id = url.substring(url.lastIndexOf('/') + 1);
+
+            $.get(`/search/addFundToProject/${Proj_id}`, function (data) {
+                result = data;
+                $("#projectStatus").find(`${result}`);
+                $("#projectStatus").load(location.href + " #projectStatus");
+            });
+        }
+        function RemoveFund() {
+            var url = window.location.pathname;
+            var Proj_id = url.substring(url.lastIndexOf('/') + 1);
+
+            $.get(`/search/removeProjectFunder/${Proj_id}`, function (data) {
+                result = data;
+                $("#projectStatus").find(`${result}`);
+                $("#projectStatus").load(location.href + " #projectStatus");
+            });
+        }
+    </script>
+}
+
+@section cssStyle{
+    @*fontawesome*@
+    <link href="~/Content/fontawesome/css/all.min.css" rel="stylesheet" />
+    <style>
+        .project-details .summary {
+            position: relative;
+        }
+
+            .project-details .summary h3 {
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .project-details .summary .pr-img {
+                border-radius: 5px;
+                width: 100%;
+                min-height: 25em;
+                max-height: 40em;
+            }
+
+            .project-details .summary .project-owner {
+                padding: 10px 0;
+                font-size: 14px;
+                color: #525252;
+            }
+
+                .project-details .summary .project-owner .owner-info {
+                    display: inline-block;
+                    margin-left: 8px;
+                    font-weight: bold;
+                    font-size: 18px;
+                    color: #333;
+                }
+
+                    .project-details .summary .project-owner .owner-info img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-right: 3px;
+                    }
+
+                .project-details .summary .project-owner .upload-date {
+                    display: inline-block;
+                    margin-left: 10px;
+                    font-weight: bold;
+                }
+
+                    .project-details .summary .project-owner .upload-date span {
+                        margin-left: 5px;
+                    }
+
+        .project-details .brief {
+            padding-top: 15px;
+        }
+
+        .project-details .summary .fund-project {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            background-color: #00796b;
+            border: 1px solid #00796b;
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 5px;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .project-details .summary .fund-project:hover {
+                background-color: transparent;
+                color: #00796b;
+            }
+
+        .project-details .brief {
+            padding-top: 15px;
+        }
+
+            .project-details .brief h5 {
+                font-weight: bold;
+                position: relative;
+                display: inline-block;
+            }
+
+                .project-details .brief h5::before {
+                    content: "";
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 30%;
+                    height: 2px;
+                    background-color: #00796b;
+                }
+
+        .project-details .description {
+            padding-top: 15px;
+        }
+
+            .project-details .description h5 {
+                font-weight: bold;
+                position: relative;
+                display: inline-block;
+            }
+
+                .project-details .description h5::before {
+                    content: "";
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 30%;
+                    height: 2px;
+                    background-color: #00796b;
+                }
+
+        .project-details .comments {
+            margin-top: 30px;
+        }
+
+            .project-details .comments .new {
+                display: flex;
+                align-items: center;
+            }
+
+                .project-details .comments .new .reactions {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 8px;
+                    font-size: 18px;
+                    color: #333;
+                }
+
+                    .project-details .comments .new .reactions .react {
+                        border: none;
+                        color: #00796b;
+                        background-color: transparent;
+                        font-size: 35px;
+                        margin: 0 3px;
+                    }
+
+                .project-details .comments .new .add-one {
+                    display: inline-block;
+                }
+
+                    .project-details .comments .new .add-one input {
+                        width: 350px;
+                        height: 38px;
+                        padding: 0 5px;
+                        border-radius: 5px;
+                        border: 1px solid #777;
+                        transition: all 0.2s ease-in-out;
+                    }
+
+                        .project-details .comments .new .add-one input:focus {
+                            border-color: #00796b;
+                        }
+
+                    .project-details .comments .new .add-one .submit {
+                        cursor: pointer;
+                        height: 38px;
+                        background-color: #00796b;
+                        border: 1px solid #00796b;
+                        color: #fff;
+                        padding: 5px 25px;
+                        border-radius: 5px;
+                        margin-left: 5px;
+                    }
+
+            .project-details .comments .current {
+                padding-top: 15px;
+                margin-top: 15px;
+                border-top: 1px solid #bbbbbb;
+            }
+
+                .project-details .comments .current li {
+                    padding-bottom: 15px;
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid #bbbbbb;
+                }
+
+                    .project-details .comments .current li:last-child {
+                        border-bottom: none;
+                    }
+
+                    .project-details .comments .current li img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-right: 3px;
+                    }
+
+                    .project-details .comments .current li .name {
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+
+                    .project-details .comments .current li p {
+                        padding: 10px 0;
+                        margin: 0;
+                    }
+
+                    .project-details .comments .current li .time {
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+    </style>
+}
+
+
+
+
+

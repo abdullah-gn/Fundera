@@ -1,0 +1,161 @@
+﻿@model testProject2.Models.user
+@{
+    ViewBag.Title = "edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Edite Profile Form -->
+
+@if (Session["userrole"].ToString() == "Funder")
+{
+
+    <div class="container">
+        <div style="height:2.5rem;"></div>
+        <form class="card col-md-12 mt-5 row" method="POST" enctype="multipart/form-data">
+
+            <div class="card-body">
+                <h3 class="card-title">Edit Profile  /  Complete Your Info</h3>
+                <div class="row">
+                    <!-- 1 -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <!-- Change Graduated or Company -->
+                            <label class="form-label">Full Name</label>
+                            @Html.TextBoxFor(n => n.name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>  <!-- 1 -->
+
+
+                    <!-- 3 -->
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Choose Your Photo</label>
+                            <input type="file" class="form-control" name="img">
+                        </div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            @Html.TextBoxFor(n => n.address, new { @class = "form-control" })
+
+                        </div>
+                    </div> <!-- 5 -->
+                    <div class="col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">phone</label>
+                            @Html.TextBoxFor(n => n.phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*  <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="form-label">Job Title</label>
+                                @Html.TextBoxFor(n => n.job_title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(n => n.job_title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label class="form-label">About The Company</label>
+                            @Html.TextAreaFor(n => n.aboutMe, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.aboutMe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-primary">Update Company Profile</button>
+            </div>
+
+        </form>
+    </div>
+}
+else
+{
+
+
+
+    <div class="container">
+        <div style="height:2.5rem;"></div>
+        <form class="card col-md-12 mt-5 row" method="POST" enctype="multipart/form-data">
+
+            <div class="card-body">
+                <h3 class="card-title">Edit Profile  /  Complete Your Info</h3>
+                <div class="row">
+                    <!-- 1 -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <!-- Change Graduated or Company -->
+                            <label class="form-label">Full Name</label>
+                            @Html.TextBoxFor(n => n.name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>  <!-- 1 -->
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Graduation Year</label>
+                            @Html.TextBoxFor(n => n.graduation_year, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.graduation_year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Choose Your Photo</label>
+                            <input type="file" class="form-control" name="img">
+                        </div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            @Html.TextBoxFor(n => n.address, new { @class = "form-control" })
+
+                        </div>
+                    </div> <!-- 5 -->
+                    <div class="col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">phone</label>
+                            @Html.TextBoxFor(n => n.phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            @Html.TextBoxFor(n => n.age, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.age, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*  <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="form-label">Job Title</label>
+                                @Html.TextBoxFor(n => n.job_title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(n => n.job_title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label class="form-label">About Me</label>
+                            @Html.TextAreaFor(n => n.aboutMe, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(n => n.aboutMe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+}
+
+

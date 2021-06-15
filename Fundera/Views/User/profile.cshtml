@@ -1,0 +1,258 @@
+﻿@model testProject2.Models.user
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    testProject2.Models.GPcontext db = new testProject2.Models.GPcontext();
+    string email = Session["useremail"].ToString();
+    testProject2.Models.user currentUser = db.users.Where(u => u.email == email).FirstOrDefault();
+}
+
+
+@*TaFiq*@
+<header>
+    <style>
+        .size-icon{
+            font-size:160%;
+        }
+
+
+    </style>
+</header>
+
+<section class="dashboard section">
+    <!-- Container Start -->
+    <div class="container">
+        <!-- Row Start -->
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                <div class="sidebar">
+                    <!-- User Widget -->
+                    <div class="widget user-dashboard-profile">
+                        <!-- User Image -->
+
+                        <div class="profile-thumb">
+
+                            @if (Model.img == null)
+                            {
+
+                                <div class="mb-3">
+                                    <img src="~/attach/profilePic/Default.jpg" class="img-thumbnail" alt="..." style="width:250px; height:auto;">>
+                                </div>
+                            }
+
+                            else
+                            {
+                                <div class="mb-3 ">
+
+                                    <img src="~/attach/profilePic/@Model.img" class="img-thumbnail" alt="..." style="width:250px; height:auto;">
+                                </div>
+                            }
+
+                            <div class="media-body ml-4 mt-2">
+
+                                <h3 class="m-0">@Model.name</h3>
+
+
+
+                            </div>
+                        </div>
+
+                        <!-- User Name -->
+
+                        <p class="text-muted mb-2" style="font-size:20px">@*@Model.job_title*@ jop title</p>
+                        <a href="~/Content/user-profile.html" class="btn btn-main-sm">chat</a>
+                    </div>
+                    <!-- Dashboard Links -->
+                    <div class="widget user-dashboard-menu">
+                        <div class="media-body">
+
+                            <div class="m-0 text-uppercase"><p>social media accounts</p> </div>
+
+                            <ul class="list-inline mb-0 mt-2">
+                                <li class="list-inline-item">
+                                    <a href="#" title="Facebook" ><i class="fa fa-facebook size-icon"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" title="Twitter" ><i class="fa fa-twitter size-icon"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" title="linkedin" ><i class="fa fa-linkedin size-icon"></i></a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget user-dashboard-menu">
+                        <ul>
+
+                            <li  id="lipro"><a href="#">Projects</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+                <div>
+                    <!-- Recently Favorited -->
+
+                    <div class="widget dashboard-container ">
+                        <div class="row">
+                           <div class="mb-2 col-md-10 ">
+                            <h3 >About </h3>
+                                <hr style="height:3px;border-width:0;color:#57a1f2 ;background-color:#57a1f2; margin: 0px; width: 4rem; z-index:5; " class=" mb-3 position-relative ">
+
+                           </div>
+                            @if (Model.id == currentUser.id)
+                            { 
+                               <div class=" mb-4 col-md-1 ml-3  ">
+                                <div class="btn-group " role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="fa fa-cog list-unstyled " href="#" style="font-size: 1.4rem;"></a>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        
+                                        
+                                            @Html.ActionLink("Edit Profile", "edit", new { id = Model.id }, new { @class = "dropdown-item" })
+                                            @Html.ActionLink("Change Password", "changePassword", new { id = Model.id }, new { @class = "dropdown-item" })
+                                        
+                                    </div>
+                                </div>
+                               </div>
+                            }
+
+                        </div>
+                        <div>
+
+                           
+                            <div class="mt-4"><p style="font-size:20px;">CONTACT INFORMATION</p> </div>
+
+
+                            <div class="row mt-2">
+                                <div class=" mx-5 ">
+
+                                    <ul>
+                                        <li><i href="" class="fa fa-mobile  " aria-hidden="true" style="font-size:250%; color:#666666;"></i></li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div class=" mt-2" style="margin-left:42px;"><p style="font-size:16px;color:#666666;">@Model.phone</p> </div>
+
+
+                            </div>
+                            <div class="row mt-2">
+                                <div class=" mx-5">
+
+                                    <ul>
+                                        <li><i href="" class="fa fa-map-marker size-icon " aria-hidden="true" style="font-size:220%; color:#666666;"></i></li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div class=" mt-1" style="margin-left:40px;"><p style="font-size:16px;color:#666666;">@Model.address</p> </div>
+
+
+                            </div>
+                            <div class="row mt-2">
+                                <div class=" mx-5">
+
+                                    <ul>
+                                        <li><i href="" class="fa fa-envelope-o size-icon " aria-hidden="true" style="font-size:185%; color:#666666;"></i></li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div style="margin-left:33px;"><p style="font-size:16px;color:#666666;">@Model.email</p> </div>
+
+
+                            </div>
+
+
+
+                            <div class="mt-5"><p style="font-size:20px;">GRADUATION YEAR</p> </div>
+                            <div class="row mt-2">
+                                <div class=" mx-5">
+
+                                    <ul>
+                                        <li><i href="" class="fa fa-graduation-cap size-icon " aria-hidden="true" style="font-size:190%; color:#666666;"></i></li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div style="margin-left:22px;"><p style="font-size:16px;color:#666666;">@Model.graduation_year</p> </div>
+
+
+                            </div>
+                            <div class="mt-5"><p style="font-size:20px;">BASIC INFORMATION</p> </div>
+                            <div class=" mt-2">
+
+
+
+                                <div class="row">
+
+                                    <p style="font-size:16px;" class="mx-5">Age:</p>
+                                    <p style="font-size:16px;color:#666666;" class="ml-5">@Model.age</p>
+                                </div>
+                                <div class="row">
+                                    <p style="font-size:16px; margin-left:20px;" class="mx-5">Gender:</p>
+                                    <p style="font-size:16px;color:#666666; margin-left:0px;" >male</p>
+                                </div>
+
+
+
+                            </div>
+                            @if (Model.aboutMe != null)
+                            {
+                                <div class="mt-5 text-uppercase"><p style="font-size:20px;">bio professional</p> </div>
+                                <div><p style="font-size:16px;color:#666666;" class="col-sm-11">@Model.aboutMe</p></div>
+                            }
+                            else
+                            {
+
+
+                                <div class="mt-5"><p style="font-size:20px;">Please Complete Your Info And Enter Your Bio</p> </div>
+
+                            }
+
+
+                        </div>
+
+                    </div>
+                 
+
+                    <div>
+                        <!-- Recently Favorited -->
+
+                        <div class="widget dashboard-container my-adslist" id="hs">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+</section>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script>
+    $("#lipro").click(function () {
+
+        $("#hs").load("/project/DisplayProjects");
+
+
+    });
+
+
+
+</script>
+

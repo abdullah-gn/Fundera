@@ -1,0 +1,29 @@
+﻿
+<h3 class="text-center">@ViewBag.pro.title</h3>
+<hr />
+
+@if (@ViewBag.pro.prototype != null)
+{
+    <img src="~/attach/@ViewBag.pro.prototype" alt="@ViewBag.pro.title" class="rounded img">
+}
+else
+{
+    <img src="~/attach/defProject.png" alt="@ViewBag.pro.title" class="rounded img">
+}
+
+
+
+<hr />
+<h3 class="text-center">Description</h3>
+<p class="lead">@ViewBag.pro.description</p>
+<hr />
+<h3 class="text-center">Brief</h3>
+<p class="lead">@ViewBag.pro.bref</p>
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+﻿@model List<testProject2.Models.project>
+@{
+    ViewBag.Title = "DisplayProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>DisplayProjects</h2>
+
+
+@foreach (var item in Model.projects)
+{
+    <p>@item.bref</p>
+}*@
+
+
+
+@*Width And height Of Image*@
+<style>
+    .img {
+        height: 15rem;
+        width: 100%;
+    }
+</style>
+
+
+<!--Modal View Details -->
+<div class="modal fade" id="d2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Project Details</h5>
+
+            </div>
+            <div class="modal-body" id="d1">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal View Details -->
+<!--Count Projects -->
+<section>
+    <div class="container">
+        <div class="page-header">
+            <!-- Title -->
+            <h1 class="page-title">
+                My Projects
+            </h1><!-- End Title -->
+            <!-- Count Of Top 10 Projects -->
+            <div class="page-subtitle"> @*Model.projects.Count*@ @Model.Count  Project</div>    <!-- Count Of Top 6 Projects -->
+
+        </div>
+        <div class="row row-cards">
+
+
+            @foreach (var item in Model)
+
+
+            {
+
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card p-3">
+                        <a href="javascript:void(0)" class="mb-3">
+                            @if (@item.prototype != null)
+                            {
+                                <img src="~/attach/@item.prototype" alt="@item.title" class="rounded img">
+                            }
+                            else
+                            {
+                                <img src="~/attach/defProject.png" alt="@item.title" class="rounded img">
+                            }
+
+                        </a>
+
+                        <div class="d-flex align-items-center px-2">
+
+                            <div>
+                                <div>@item.title</div>
+                                <small class="d-block text-muted">@item.Proj_date</small>
+                            </div>
+
+                            <div class="ml-auto text-muted">
+                                <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i> @item.project_likes.Count</a>
+                            </div>
+
+
+                        </div>
+                        <!-- breif -->
+                        <div class="ml-left px-2 py-2 text-muted">
+                            <p> @item.bref</p>
+                        </div>
+                        <div class="ml-left px-2 py-1 text-muted">
+                            <p> @item.description</p>
+                        </div>
+
+                        <div>
+
+                            @Html.ActionLink("Delete", "delete", "project", new { id = item.id }, new { @class = "btn btn-danger mx-1" })
+                            @Html.ActionLink("Edite", "edite", "project", new { id = item.id }, new { @class = "btn btn-info mx-2" })
+
+                            @Ajax.ActionLink("View Details", "showDetails", new { id = item.id }, new AjaxOptions()
+                            {
+                           UpdateTargetId = "d1",
+
+                           InsertionMode = InsertionMode.Replace,
+                           OnComplete = "show"
+                       }, new { @class = "btn btn-primary mx-2" })
+
+
+                        </div>
+
+                    </div>
+                </div><!--End Of Card -->
+            }
+
+
+        </div>
+    </div>
+</section><!-- End section Top Rated Projects -->
+
+
+@section scripts {
+
+    <script>
+        function show() {
+            $("#d2").modal({ show: true });
+        }
+    </script>
+}
+
+
+
+

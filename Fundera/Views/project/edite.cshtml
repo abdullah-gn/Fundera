@@ -1,0 +1,79 @@
+﻿@model testProject2.Models.project
+@{
+    ViewBag.Title = "edite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Edite Project Form -->
+<div class="container">
+   
+    <form class="card" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
+            <!-- Heading -->
+            <h3 class="card-title">Edite Project</h3><!-- Heading -->
+            <div class="row">
+
+                <!-- Pro Title -->
+                <div class="col-md-7">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.title, new { @class = "form-label" })
+                        @Html.TextBoxFor(n => n.title, new { @class = "form-control" })
+                        @*<label class="form-label">Project Title</label>
+                <input type="text" class="form-control" name="title" placeholder="Add title Of The Project">*@
+                    </div>
+                </div>
+                <!-- img -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Change Cover image Of The Project</label>
+                        <input type="file" class="form-control" name="img">
+                    </div>
+                </div>
+                <!-- img -->
+                <!-- Video -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Change Video For Your Project </label>
+                        <input type="file" class="form-control" name="video">
+                    </div>
+                </div><!-- Video -->
+                <!-- Category -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.cat_id, new { @class = "form-label" })
+                        @Html.DropDownListFor(n => n.cat_id, (SelectList)ViewBag.category, new { @class = "form-control custom-select" })
+                    </div>
+                </div>
+                <!-- Category -->
+                <!-- Breif -->
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        @Html.LabelFor(n => n.bref, new { @class = "form-label" })
+                        @Html.TextAreaFor(n => n.bref, new { @class = "form-control" })
+
+                        @*<label class="form-label">Breif About The Project</label>
+                <textarea rows="3" class="form-control" name="bref" placeholder="Here can be your Brief"></textarea>*@
+                    </div>
+                </div>
+
+                <!--  Description -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.description, new { @class = "form-label" })
+                        @Html.TextAreaFor(n => n.description, new { @class = "form-control" })
+                        @*<label class="form-label">Description</label>
+                <textarea rows="5" class="form-control" name="description" placeholder="Here can be your description"></textarea>*@
+                    </div>
+                </div>
+                <!--  Description -->
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-gray">Edite Project</button>
+        </div>
+    </form>
+
+
+</div>
+<!-- Edite Project Form -->

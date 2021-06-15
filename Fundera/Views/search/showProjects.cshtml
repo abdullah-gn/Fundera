@@ -1,0 +1,44 @@
+﻿@model List<testProject2.Models.project>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>show Projects</title>
+    <link href="~/Content/fontawesome/css/all.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+        @if (Model.Count == 0)
+        {<h3>No Projects</h3>}
+        else
+        {
+            <div class="row justify-content-center">
+                @foreach (var item in Model)
+                {
+                    <div class="card col-lg-4 col-md-6 col-sm-12 mr-1" style="max-width: 23rem;">
+                        <img class="card-img-top mt-1" src="~/attach/@item.prototype" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title d-inline-block">@item.title</h5>
+                            <div class="d-inline-block" style="position: absolute; right: 4px;">
+                                <p class="text-muted d-inline-block">@item.likesno</p>
+                                <a class="react far fa-heart d-inline-block"></a>
+                            </div>
+                            <p class="card-text">@item.bref</p>
+                            <a href="/search/projectDetails/@item.id" class="far fa-eye btn btn-info">More Details</a>
+                            <p class="text-muted-dark d-inline-block mt-2" style="position: absolute; right: 4px;">@item.Proj_date.ToString()</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+</body>
+</html>

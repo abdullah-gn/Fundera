@@ -1,0 +1,74 @@
+﻿
+<table class="table table-responsive product-dashboard-table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Product Details</th>
+            <th class="text-center">Category</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.prs)
+        {
+        <tr id="row_@item.id">
+
+            <td class="product-thumb">
+                @if (item.prototype == null)
+                {
+                    <img width="80px" height="auto" src="~/attach/defProject.png" alt="image description">
+                }
+                else
+                {
+                    <img width="80px" height="auto" src="~/attach/@item.prototype" alt="image description">
+
+                }
+            </td>
+            <td class="product-details">
+                <h3 class="title">@item.title</h3>
+                <span class="add-id"><strong>Description:</strong>@item.description</span>
+                <span><strong>Posted on: </strong><time>@item.Proj_date</time> </span>
+                <span class="status active"><strong>Status</strong>Active</span>
+
+            </td>
+            <td class="product-category"><span class="categories">@item.catalog.name</span></td>
+            <td class="action" data-title="Action">
+                <div class="">
+                    <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item ">
+                            <a class="delete" href="#" onclick="ConfirmDelete(@item.id)">
+                                <i class="fa fa-trash" style="font-size:17px;color:white"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <input type="hidden" id="hiddenprojectId" value="@item.id" />
+                </div>
+            </td>
+          
+        </tr>
+        
+            
+        }
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+             
+                <h3 class="modal-title">Delete project</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure ? You want to delete this. </h4>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="DeleteProject()">Confirm</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+﻿@model List<testProject2.Models.user>
+@{
+    ViewBag.Title = "searchForUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="search-results">
+    <div class="container">
+        @if (Model.Count == 0)
+        {<p>We couldn't find anything to show </p> }
+        else
+        {
+            <ul>
+                @foreach (var user in Model)
+                {
+
+
+                    if(user.role_id != 1) {
+
+                    <li class="result-block">
+                    @if (user.img != null)
+                    {
+                        <img src="~/attach/profilePic/@user.img" />
+                    }
+                    else
+                    {
+                        <img src="~/attach/profilePic/Default.jpg" />
+                    }
+                    <div class="info">
+                        <h5>@user.name</h5>
+                        <p>@user.role.name</p>
+                    </div>
+                    <div class="actions">
+                        <a href="/user/profile/@user.id" class="full-info">
+                            View Profile
+                        </a>
+                    </div>
+                </li>
+                    }
+                }
+            </ul>
+        }
+
+    </div>
+</section>
+
+<!--CSS Style-->
+@section cssStyle{
+    <style>
+        .search-results .result-block {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 15px 0;
+            border-bottom: 1px solid #bbbbbb;
+        }
+
+            .search-results .result-block:last-child {
+                border-bottom: none;
+            }
+
+            .search-results .result-block img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+            }
+
+            .search-results .result-block .info {
+                position: relative;
+                padding-left: 50px;
+                padding-right: 30px;
+                flex: auto;
+            }
+
+                .search-results .result-block .info h5 {
+                    font-weight: bold;
+                }
+
+                .search-results .result-block .info p {
+                    color: #777;
+                }
+
+            .search-results .result-block .actions {
+                position: absolute;
+                top: 45%;
+                right: 0;
+            }
+
+                .search-results .result-block .actions .full-info {
+                    cursor: pointer;
+                    background-color: #00796b;
+                    border: 1px solid #00796b;
+                    color: #fff;
+                    padding: 8px 20px;
+                    border-radius: 5px;
+                    transition: all 0.2s ease-in-out;
+                }
+
+                    .search-results .result-block .actions .full-info:hover {
+                        background-color: #fff;
+                        color: #00796b;
+                    }
+    </style>
+}
+
+

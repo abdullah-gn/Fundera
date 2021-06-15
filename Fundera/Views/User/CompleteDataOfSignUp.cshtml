@@ -1,0 +1,92 @@
+﻿@model testProject2.Models.user
+@{
+    ViewBag.Title = "CompleteDataOfSignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col mx-auto">
+            <div class="text-center">
+                <img src="./assets/brand/tabler.svg" class="h-6" alt="">
+            </div>
+
+            <p>@Session["userid"]</p>
+            <form class="card" action="" method="post">
+                <div class="card-body p-6">
+                    <div class="card-title">Compelete Your Accout Info</div>
+                    <!-- Name Input  -->
+
+                    <div class="row">
+
+                        @* <div class="form-group">
+            @Html.LabelFor(n => n.title, new { @class = "form-label" })
+            @Html.TextBoxFor(n => n.title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.title, "", new { @class = "text-danger" })
+        </div> *@
+
+                        <div class="col-md-7">
+                            <div class="form-group">
+
+                                @Html.LabelFor(n => n.name, new { @class = "form-label" })
+                                @Html.TextBoxFor(n => n.name, new { @class = "form-control" })
+                              
+
+                             
+                            </div>
+                        </div><!-- Name Input  -->
+                        <!-- Phone -->
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label class="form-label">Grasuation Year</label>
+                                <input type="text" class="form-control" placeholder="Graduation Year">
+                            </div>
+                        </div>
+    <!--phone -->
+                        <!-- Address -->
+                        <div class="col-md-7">
+                            <div class="form-group">
+
+                                @Html.LabelFor(n => n.phone, new { @class = "form-label" })
+                                @Html.TextBoxFor(n => n.phone, new { @class = "form-control" })
+                               
+                            </div>
+                        </div><!--Address -->
+                        <!-- Photo -->
+                        @*<div class="col-md-7">
+                            <div class="form-group">
+                                <label class="form-label">Choose A Photo</label>
+                                <input type="file" class="form-control" name="photo">
+                            </div>
+                        </div>*@
+    <!--Photo -->
+                        <!-- Role Of the Account  -->
+                        <div class="col-md-7">
+                            <div class="form-group">
+
+                                <label class="form-label">Account Role</label>
+                                <select name="userRole" id="" class="form-control">
+                                    <option value="3">Graduated</option>
+                                    <option value="2">Company</option>
+                                </select>
+                            </div>
+                        </div><!-- End Role Of the Account  -->
+                       
+
+                        <div class="col-md-7">
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">submit Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center text-muted">
+                Already have account? <a href="./login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

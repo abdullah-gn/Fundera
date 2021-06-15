@@ -1,0 +1,76 @@
+﻿@model testProject2.Models.project
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Create Project Form -->
+<div class="container">
+    <form class="card" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
+            <!-- Heading -->
+            <h3 class="card-title">Create Project</h3><!-- Heading -->
+            <div class="row">
+                @if(ViewBag.Error != null)
+                {
+                    <p class="alert alert-danger"> @ViewBag.Error</p>
+                }
+                <!-- Pro Title -->
+                <div class="col-md-7">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.title, new { @class = "form-label" })
+                        @Html.TextBoxFor(n => n.title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- img -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Cover image Of The Project</label>
+                        <input type="file" class="form-control" name="img">
+                    </div>
+                </div><!-- img -->
+                <!-- Video -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Add Video For Your project </label>
+                        <input type="file" class="form-control" name="video" required>
+                    </div>
+                </div><!-- Video -->
+                <!-- Category -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.cat_id, new { @class = "form-label" })
+                        @Html.DropDownListFor(n => n.cat_id, (SelectList)ViewBag.category, new { @class = "form-control custom-select" })
+                    </div>
+                </div> <!-- Category -->
+                <!-- Breif -->
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        @Html.LabelFor(n => n.bref, new { @class = "form-label" })
+                        @Html.TextAreaFor(n => n.bref, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.bref, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!--  Description -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(n => n.description, new { @class = "form-label" })
+                        @Html.TextAreaFor(n => n.description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.description, "", new { @class = "text-danger" })
+                    </div>
+                </div><!--  Description -->
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </div>
+    </form>
+</div>
+<!-- Create Project Form -->
+
+
+
+
+

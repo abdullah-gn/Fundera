@@ -1,0 +1,92 @@
+﻿@model testProject2.Models.user
+@{
+    ViewBag.Title = "signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="page-single">
+        <div class="container">
+           
+                <div class="col-6 mx-auto">
+                    <div class="text-center">
+                        <img src="./assets/brand/tabler.svg" class="h-6" alt="">
+                    </div>
+                    <form class="card" method="post" enctype="multipart/form-data">
+                        <div class="card-body p-6">
+                            <div class="card-title">Create new account</div>
+                            <div class="row">
+
+                                @*block Deafault Value*@ 
+
+                               
+
+                                <!-- Email Input -->
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        @Html.LabelFor(n => n.name, new { @class = "form-label" })
+                                        @Html.TextBoxFor(n => n.name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(n => n.email, new { @class = "form-label" })
+                                        @Html.TextBoxFor(n => n.email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div> <!-- Email Input -->
+                                <!-- Role Of the Account  -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <label class="form-label">Account Role</label>
+                                        <select name="userRole" id="" class="form-control">
+                                            <option value="3">Graduated</option>
+                                            <option value="2">Company</option>
+                                        </select>
+                                    </div>
+                                </div><!-- End Role Of the Account  -->
+                                <!-- Password Input -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(n => n.password, new { @class = "form-label" })
+                                        @Html.PasswordFor(n => n.password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                </div> <!-- Password Input -->
+                                <!-- Repeat Password -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(n => n.confirmPassword, new { @class = "form-label" })
+                                        @Html.PasswordFor(n => n.confirmPassword, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.confirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div><!-- Repeat Password -->
+                                <!--Image-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Upload Your Image</label>
+                                        <input type="file" class="form-control" name="img">
+                                    </div>
+                                </div><!-- image -->
+                               
+
+                                <div class="col-md-12">
+                                    <div class="form-footer">
+                                        <button type="submit" class="btn btn-primary btn-block">Create new account</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+</form>
+                    <div class="text-center text-muted">
+                        Already have account? <a href="/User/login">Sign in</a>
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+
+

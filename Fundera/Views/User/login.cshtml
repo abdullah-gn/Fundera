@@ -1,0 +1,60 @@
+﻿@model testProject2.Models.login
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Login     -->
+
+<div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-login mx-auto">
+                    <div class="text-center mb-6">
+                        <img src="./assets/brand/tabler.svg" class="h-6" alt="">
+                    </div>
+                    <form class="card" action="" method="post">
+                        <div class="card-body p-6">
+                            <div class="card-title">Login to your account</div>
+                            <div class="form-group">
+
+                                @Html.LabelFor(n => n.email, new { @class = "form-label" })
+                                @Html.TextBoxFor(n => n.email, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(n => n.password, new { @class = "form-label" })
+                                @Html.PasswordFor(n => n.password, new { @class = "form-control" })
+
+                            </div>
+
+                          
+                            @*Remmember Me*@ 
+                            <div class="form-group">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="RemeberMe"  class="custom-control-input" value="true"/>
+                                    <span class="custom-control-label">Remember me</span>
+                                </label>
+                            </div>
+
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                            </div>
+
+                            @if (ViewBag.status != null)
+                            {
+                                <p class="text-danger">@ViewBag.status</p>
+                            }
+                        </div>
+                    </form>
+                    <div class="text-center text-muted">
+                        Don't have account yet?  @Html.ActionLink("Sign Up", "signup", "User")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End  Login     -->

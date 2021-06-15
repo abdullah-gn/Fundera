@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <style>
+
+
+
+        .sec1 p {
+            font-size: 24px;
+            font-family: sans-serif;
+            color: #65735B;
+            max-width: 28rem;
+            margin: 0px 0px 30px;
+        }
+
+        .sec3 p {
+            font-size: 22px;
+            font-family: sans-serif;
+            color: #65735B;
+            max-width: 28rem;
+            margin: 30px 0px 30px;
+        }
+
+        .sec2 .par-1 {
+            font-size: 24px;
+            font-family: Helvetica, sans-serif;
+            color: #ffffff;
+            margin: 0px 0px 100px;
+            max-width: 20rem;
+            font-weight: 500;
+        }
+
+        .sec2 .par-2 {
+            font-size: 18px;
+            font-family: sans-serif;
+            color: #ffffff;
+            margin: 0px 0px 30px;
+            max-width: 25rem;
+        }
+
+        .sec1 .but1 {
+            background: #0c65ed;
+            border-color: #0c65ed;
+            border-radius: 30px;
+            color: white;
+            margin-right: 1.3rem;
+        }
+
+        .sec1 .but2 {
+            background: transparent;
+            border-color: #0c65ed;
+            color: white;
+            border-radius: 30px;
+        }
+
+        .sec2 .overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .sec2 .hovers:hover {
+            background-color: white !important;
+        }
+
+            .sec2 .hovers:hover span {
+                color: rgb(31, 87, 195) !important;
+            }
+
+            .sec2 .hovers:hover i {
+                color: rgb(31, 87, 195) !important;
+            }
+
+
+        .sec3 img {
+            filter: drop-shadow(-11px 0 7px rgba(140,140,140,0.4));
+        }
+
+        .sec3 .but2 {
+            background: transparent;
+            border-color: #0c65ed;
+            color: white;
+            border-radius: 30px;
+            margin-left: 1.3rem;
+        }
+
+    </style>
+</header>
+
+<main>
+
+    <section>
+        <div class="row sec1" style="padding-top:4rem;padding-bottom:4rem;">
+
+            <div class=" col-md-7  col-sm-12 ">
+
+                <h2 class="display-1  mb-4" style="font:70px; ">Turn Your ideas into a future. </h2>
+                <p>
+                    Find great talent. Build your business.
+                    Take your career to the next level.
+                </p>
+
+
+                <a class="but1 btn  "><span style="color:white; font-size:15px; font-family:sans-serif; padding: 12px 29px;">Find Talent</span></a>
+                <a class="but2 btn  "><span style="color:#0c65ed; font-size:15px; font-family:sans-serif; padding: 12px 29px;">Find Funder</span></a>
+                <span class="d-block" style="color:#9AAA97;margin-top:70px; margin-bottom:10px; font-size:18px">Trusted by</span>
+
+                <img src="~/Content/images/iti-logo.png" style="width:30px; color:#9AAA97;" />
+
+            </div>
+
+
+
+
+
+            <div class="  col-md-5 mt-5  img-2  " style="background-image:url(../../Content/images/2.jpg); background-position: center; background-size: cover; border-radius:10px;box-shadow: 12px -5px 1.5rem gray; min-height:29rem;  ">
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div class=" mt-5 sec2 " style="background-image:url(../../Content/images/5.jpg); background-position: center; background-size: cover; border-radius:10px; min-height:41.3rem; position:relative; margin-bottom:4rem;">
+
+            <div class="overlay ">
+                <div style="padding:2rem;">
+                    <p class="par-1">
+                        For companys
+                    </p>
+                    <h2 class="display-2  " style="font-size:72px; color:white; max-width:25rem; margin:0px 0px 30px; font-family: Georgia;">
+                        Find talent
+                        your way
+                    </h2>
+                    <p class="par-2">Work with the largest network of independent professionals and get things done—from quick turnarounds to big transformations.</p>
+
+
+                    <div class="hovers " style="max-width: 22rem; background-color:rgb(31, 87, 195);border-radius:10px;">
+                        <a href="#">
+                            <div style="padding:15px;">
+                                <span class="d-block text-white" style="font-size:36px; margin:0px 0px 40px; max-width:13rem; line-height:1; padding:0px; font-family:Helvetica, sans-serif;">Browse and fund projects</span>
+
+                                <span class="text-white" style="font-size:18px;padding:0px; font-family:Helvetica, sans-serif; ">Project Catalog</span><i class="fa fa-arrow-right text-white ml-2" style="font-weight:100; "></i>
+
+
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row sec3" style="padding-top:4rem;">
+            <div class="col-md-1"></div>
+            <div class="col-md-7 col-sm-10">
+                <h2 class="display-4" style="font-size:70px; color:#001E00; margin:0px 0px 40px; ">Find great work from multiple companies</h2>
+                <a class="but2 btn  "><span style="color:#0c65ed; font-size:15px; font-family:sans-serif; padding: 12px 29px;">Find Opportunities</span></a>
+                <p>
+                    Meet clients you’re excited to work with and take
+                    your career or business to new heights.
+                </p>
+            </div>
+            <div class="col-md-3 lastimg">
+
+                <img src="~/Content/images/partner-slide-man.png" />
+
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+
+    </section>
+</main>
+

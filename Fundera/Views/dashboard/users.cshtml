@@ -1,0 +1,100 @@
+﻿@model List<testProject2.Models.user>
+<table class="table table-responsive product-dashboard-table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>User Details</th>
+            <th class="text-center">User type</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (item.role_id != 1)
+            {
+
+            <tr id="row_@item.id">
+
+                <td class="product-thumb">
+                    @if (item.img == null)
+                    {
+                        <img width="80px" height="auto" src="~/attach/profilePic/Default.jpg" alt="image description">
+                    }
+                    else
+                    {
+                        <img width="80px" height="auto" src="~/attach/profilePic/@item.img" alt="image description">
+                    }
+
+                </td>
+                <td class="product-details">
+                    <h3 class="title">@item.name</h3>
+                    <span class="add-id"><strong>E-Mail:</strong>@item.email></span>
+                    <span><strong>Address</strong><time>@item.address</time> </span>
+                    <span><strong>Mobile Num : </strong><time>@item.phone</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                </td>
+               <td class="product-category"><span class="categories">@item.role.name</span></td>
+                <td class="action" data-title="Action">
+                    <div class="">
+                        <ul class="list-inline justify-content-center">
+                            <li class="list-inline-item">
+                                <a href="#" onclick="ConfirmDelete(@item.id)">
+                                    <i class="fa fa-user-times" style="font-size:25px;color:red"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" onclick="Confirmblock(@item.id)">
+                                    <i class="fa fa-ban" style="font-size:25px;color:black"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <input type="hidden" id="hiddenUserId" value="@item.id" />
+                    </div>
+                </td>
+            </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h3 class="modal-title">Delete User</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure ? You want to delete this. </h4>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="DeleteUser()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h3 class="modal-title">Block User</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Are you Sure you want to Block this user ? </h4>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="BlockUser()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

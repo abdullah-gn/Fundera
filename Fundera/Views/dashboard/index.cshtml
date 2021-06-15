@@ -1,0 +1,212 @@
+﻿
+@{
+
+    ViewBag.Title = "Admin panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--==================================
+=           Admin Dashbaord            =
+===================================-->
+<section class="dashboard section">
+    <!-- Container Start -->
+    <div class="container">
+        <!-- Row Start -->
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                <div class="sidebar">
+                    <!-- User Widget -->
+                    <div class="widget user-dashboard-profile">
+                        <!-- User Image -->
+                        <div class="profile-thumb">
+                            <img src="~/attach/profilePic/@ViewBag.AdminPic" alt="" class="">
+                        </div>
+                        <!-- User Name -->
+                        <h4 class="text-center">@ViewBag.AdminName</h4>
+
+                        
+                        
+                    </div>
+                    <!-- Dashboard Links -->
+                    <div class="widget user-dashboard-menu">
+                        <ul>
+                            <li class="f" id="liusers"><a href="#"><i class="fa fa-address-book" style="font-size:25px;color:forestgreen"></i>Listed users <span> @ViewBag.u</span>  </a></li>
+                            <li class="f" id="lipro"><a href="#"><i class="fa fa-plug" style="font-size:23px;color:brown"></i>Listed Projects <span>  @ViewBag.pc </span></a></li>
+                            <li class="f"id="liblocked" ><a href="#"><i class="fa fa-ban" style="font-size:25px;color:red"></i>Blocked users <span> @ViewBag.bu</span>   </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+                <!-- Recently Favorited -->
+                <h3 class="widget-header text-center">Admin Panel <i class="fa fa-user-secret" style="font-size:25px;color:black"></i></h3>
+                <div class="widget dashboard-container my-adslist" id="hs">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</section>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+        $("#lipro").click(function () {
+
+            $("#hs").load("/dashboard/projects");
+
+
+        });
+
+        $("#liusers").click(function () {
+
+            $("#hs").load("/dashboard/users"); 
+
+
+        });
+         $("#liblocked").click(function () {
+
+         $("#hs").load("/dashboard/blockedUsers");
+
+
+         });
+
+        $(".f").click(function () {
+                $(this).addClass("active");
+            $(".f").not(this).removeClass("active");
+        });
+
+
+     //---- projectDelete ajax -----//
+
+    var ConfirmDelete = function (ProjectId) {
+
+        $("#hiddenprojectId").val(ProjectId);
+        $("#myModal").modal('show');
+
+    }
+
+    var DeleteProject = function () {
+
+        $("#loaderDiv").show();
+
+        var proId = $("#hiddenprojectId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/dashboard/DeleteProject",
+            data: { projectId: proId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + proId).remove();
+
+            }
+
+        })
+
+    }
+
+     //---- UserDelete ajax -----//
+
+
+    var ConfirmDelete = function (UserId) {
+        $("#hiddenUserId").val(UserId);
+        $("#myModal").modal('show');
+    }
+
+    var DeleteUser = function () {
+
+        $("#loaderDiv").show();
+
+        var UserId = $("#hiddenUserId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/dashboard/DeleteUser",
+            data: { UserId: UserId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + UserId).remove();
+
+            }
+
+        })
+
+    }
+
+
+    //---- UserBlock ajax -----//
+
+    var Confirmblock = function (UserId) {
+
+        $("#hiddenUserId").val(UserId);
+        $("#myModal2").modal('show');
+
+    }
+    var BlockUser = function () {
+
+        $("#loaderDiv").show();
+
+        var UserId = $("#hiddenUserId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/dashboard/BlockUser",
+            data: { UserId: UserId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal2").modal("hide");
+                $("#row_" + UserId).remove();
+
+            }
+
+        })
+
+    }
+
+    //---- Unblock ajax -----//
+
+    var ConfirmDelete = function (UserId) {
+
+        $("#hiddenUserId").val(UserId);
+        $("#myModal").modal('show');
+
+    }
+
+    var Unblock = function () {
+
+        //$("#loaderDiv").show();
+
+        var UserId = $("#hiddenUserId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/dashboard/UnBlockUser",
+            data: { UserId: UserId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + UserId).remove();
+
+            }
+
+        })
+
+    }
+
+</script>
+
+
+

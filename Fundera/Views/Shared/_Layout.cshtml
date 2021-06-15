@@ -1,0 +1,511 @@
+﻿
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <!-- Generated: 2018-04-06 16:27:42 +0200 -->
+    <title>@ViewBag.title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <!-- Dashboard Core -->
+    <link href="~/Content/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/dashboard.css" rel="stylesheet" />
+
+    @RenderSection("cssStyle", required: false)
+    <style>
+        .size-i {
+            font-size: 200%;
+        }
+
+        .logo {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            padding-left: 10px;
+            border-left: 4px solid #0c65ed;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+        .nav-1 {
+            top: 0px;
+            position: sticky;
+            z-index: 20;
+        }
+
+        .but1 {
+            background: #0c65ed;
+            border-color: #0c65ed;
+            border-radius: 38px;
+            color: white;
+        }
+
+        .but2 {
+            background: transparent;
+            border-color: #0c65ed;
+            color: white;
+            border-radius: 38px;
+        }
+
+        #top-page {
+            padding: .23rem .76rem .76rem .76rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            overflow: hidden;
+            background-color: transparent;
+            border-radius: 50%;
+            color: #0c65ed;
+            height: 30px;
+            width: 30px;
+            position: sticky;
+            z-index: 3000;
+            top: 56rem;
+            margin-left: 95%;
+            border: 3px solid #0c65ed;
+            opacity: .75;
+        }
+
+            #top-page .top {
+                color: white;
+            }
+                    /*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+  background: #000;
+  padding: 0 0 30px 0;
+  color: #eee;
+  font-size: 14px;
+}
+
+#footer .footer-top {
+  background: #111;
+  padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-info {
+  margin-bottom: 30px;
+}
+
+        #footer .footer-top .footer-info h3 {
+            font-size: 34px;
+            margin: 0 0 20px 0;
+            padding: 2px 0 2px 10px;
+            line-height: 1;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            border-left: 4px solid #1f57c3;
+        }
+
+#footer .footer-top .footer-info p {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-family: "Montserrat", sans-serif;
+  color: #eee;
+}
+
+#footer .footer-top .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #333;
+  color: #eee;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+#footer .footer-top .social-links a:hover {
+  background: #1f57c3;
+  color: #fff;
+}
+
+#footer .footer-top h4 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+#footer .footer-top h4::before, #footer .footer-top h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+}
+
+#footer .footer-top h4::before {
+  right: 0;
+  background: #555;
+}
+
+        #footer .footer-top h4::after {
+            background: #1f57c3;
+            width: 60px;
+        }
+
+#footer .footer-top .footer-links {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#footer .footer-top .footer-links ul i {
+  padding-right: 8px;
+  color: #ddd;
+}
+
+#footer .footer-top .footer-links ul li {
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+
+#footer .footer-top .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+#footer .footer-top .footer-links ul a {
+  color: #eee;
+}
+
+        #footer .footer-top .footer-links ul a:hover {
+            color: #1f57c3;
+        }
+
+#footer .footer-top .footer-contact {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-contact p {
+  line-height: 26px;
+}
+
+#footer .footer-top .footer-newsletter {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-newsletter input[type="email"] {
+  border: 0;
+  padding: 6px 8px;
+  width: 65%;
+}
+
+#footer .footer-top .footer-newsletter input[type="submit"] {
+  background: #18d26e;
+  border: 0;
+  width: 35%;
+  padding: 6px 0;
+  text-align: center;
+  color: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+        #footer .footer-top .footer-newsletter input[type="submit"]:hover {
+            background: #1f57c3;
+        }
+
+#footer .copyright {
+  text-align: center;
+  padding-top: 30px;
+}
+
+#footer .credits {
+  text-align: center;
+  font-size: 13px;
+  color: #ddd;
+}
+    </style>
+</head>
+<body class="">
+    <div class="page">
+        <div class="page-main">
+            <!-- header -->
+
+            @if (Session["useremail"] == null)
+            {
+                <div class="header py-4">
+                    <!-- container -->
+                    <div class="container">
+                        <div class="d-flex">
+                            <div class="mr-auto mt-1">
+                                <h1 class="logo mr-auto"><a href="#" id="decore">Fundera</a></h1>
+                            </div>
+                            <div class="d-flex ml-auto">
+                                <div class="nav-item d-md-flex">
+                                    <a href="/User/login" class="but2 btn p-0  "><span style="color:#0c65ed; font-size:14px; font-family:sans-serif; padding: 0px 18px;">Log In</span></a>
+                                </div>
+                                <div class="nav-item d-md-flex">
+                                    <a href="/User/signup" class="but1 btn p-0 "><span style="color:white; font-size:14px; font-family:sans-serif; padding: 0px 18px;">Sign Up</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> <!--End container -->
+                </div>
+
+            }
+            else
+            {
+                testProject2.Models.GPcontext db = new testProject2.Models.GPcontext();
+                string email = Session["useremail"].ToString();
+                testProject2.Models.user currentUser = db.users.Where(u => u.email == email).FirstOrDefault();
+                <div class="header py-4">
+                    <div class="container">
+                        <div class="d-flex">
+                            @if (Session["userrole"].ToString() == "Student" || Session["userrole"].ToString() == "Funder")
+                            {
+                                <div class="mr-auto mt-2">
+                                    <h1 class="logo mr-auto"><a href="/User/TimeLine" id="decore">Fundera</a></h1>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mr-auto mt-2">
+                                    <h1 class="logo mr-auto"><a href="#" id="decore">Fundera</a></h1>
+                                </div>
+                            }
+                            <div class="d-flex order-lg-2 ml-auto">
+
+
+
+                                <a href="/User/profile/@currentUser.id" class="nav-link  mr-2 ">
+
+                                    <img class="avatar" src="~/attach/profilePic/@currentUser.img" alt="Profile Picture" style="width:3rem;height:3rem" />
+
+
+                                    @*@if (Session["userrole"].ToString() == "Student")
+                                {
+                                    <img class="avatar" src="~/attach/profilePic/GradImage.jpg" alt="dfssdf" />
+                                }
+                                else
+                                {
+                                    <img class="avatar" src="~/attach/profilePic/CompanyPhoto.jpg" alt="dfssdf" />
+                                }*@
+
+
+                                    <span class="ml-2 d-none d-lg-block">
+                                        <span class="text-default">@currentUser.name</span>
+                                        <small class="text-muted d-block mt-1">@currentUser.role.name</small>
+                                    </span>
+
+                                </a>
+                                @if (Session["useremail"] != null)
+                                {
+                                    <span class="nav-item  list-unstyled border-left pl-5 ">
+                                        @Html.ActionLink("  ", "logout", "User", null, new { @class = "fa fa-sign-out size-i ", title = "Logout" })
+
+                                    </span>
+
+                                }
+
+                            </div>
+                            <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                                <span class="header-toggler-icon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- nav bar -->
+                <div class="header collapse d-lg-flex p-0 mb-4" id="headerMenuCollapse">
+                    <div class="container">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg order-lg-first d-flex">
+                                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+
+
+                                    @if (Session["userrole"].ToString() == "Student")
+                                    {
+                                        <li class="nav-item">
+                                            <a href="/User/TimeLine" class="nav-link"><i class="fe fe-box"></i> Home</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            @Html.ActionLink("Creat Project", "Index", "project", null, new { @class = "nav-link" })
+                                            @*<a hr ef="/project/Index" class="nav-link"><i class="fe fe-check-square"></i> Create Project</a>*@
+                                        </li>
+
+                                        <li class="nav-item">
+                                            @Html.ActionLink("View My Projects", "DisplayProjects", "project", null, new { @class = "nav-link" })
+                                            @* <a href="/project/DisplayProjects" class="nav-link"><i class="fe fe-file-text"></i>View MY Projects</a>*@
+                                        </li>
+                                        <li class="nav-item">
+                                            @Html.ActionLink("Expolre Projects", "catalogDetails", "search", null, new { @class = "nav-link" })
+                                            @*<a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i> Expolre Projects</a>*@
+                                        </li>
+
+
+
+                                    }
+
+                                    else if (Session["userrole"].ToString() == "Funder")
+                                    {
+                                        <li class="nav-item">
+                                            <a href="/User/TimeLine" class="nav-link"><i class="fe fe-box"></i> Home</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            @Html.ActionLink("Expolre Projects", "catalogDetails", "search", null, new { @class = "nav-link" })
+                                            @*<a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i> Expolre Projects</a>*@
+                                        </li>
+
+
+                                    }
+
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            @Html.ActionLink("Control Panel", "Index", "dashboard", new { id = 0 }, new { @class = "nav-link" })
+                                            @*<a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i>Control Panel</a>*@
+
+                                        </li>
+                                    }
+
+
+                                </ul>
+                                @if (Session["userrole"].ToString() == "Funder" || Session["userrole"].ToString() == "Student")
+                                {
+                                    <div class="mt-1 mb-1 ml-auto">
+                                        <form action="/search/searchForUser" class="input-icon my-3 my-lg-0  p-0">
+                                            <input type="search" class="form-control header-search " name="name" placeholder="Search For User" tabindex="1">
+                                            <div class="input-icon-addon">
+                                                <i class="fe fe-search"></i>
+                                            </div>
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Navbar Tabs -->
+
+            }
+            <!-- header -->
+            <!-- End Of Header -->
+            <!-- --------------------------------------------------------------------------------------------------- -->
+            <!-- inner Content -->
+            <a href="#top" id="top-page" class="mt-5">▲</a>
+            <div style="min-height:56.5rem">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- inner Content -->
+            <!-- --------------------------------------------------------------------------------------------------- -->
+            <!-- Footer -->
+            <footer id="footer">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-4 col-md-6 footer-info">
+                                <h3>Fundera</h3>
+                                <p>Turn Your ideas into a future. Find great talent. Build your business. Take your career to the next level. Meet clients you’re excited to work with and take your career or business to new heights. </p>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 footer-links">
+                                <h4>Useful Links</h4>
+                                <ul>
+                                    <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+                                    <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+                                    <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 footer-contact">
+                                <h4>Contact Us</h4>
+                                <p>
+                                    28 Km by Cairo / Alexandria Desert, 6 October, Egypt<br>
+                                    <strong>Phone:</strong> +201096722426<br>
+                                    <strong>Email:</strong> fundera@gmail.com<br>
+                                </p>
+
+                                <div class="social-links">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="copyright">
+                        &copy; Copyright <strong>Fundera</strong>. All Rights Reserved
+                    </div>
+
+                </div>
+            </footer><!-- End Footer -->
+            <!-- End Footer -->
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

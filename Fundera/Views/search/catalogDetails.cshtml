@@ -1,0 +1,152 @@
+﻿@model testProject2.Models.project
+@{
+    ViewBag.Title = "Expolre Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="col-12 mt-4">
+    <form method="get" action="/Project/showProjects" class="form-inline my-5 ml-5">
+
+        <div class="form-group d-inline-block mr-2">
+            <input type="search" name="title" class="form-control search-project" id="title" placeholder="Project Title.." />
+        </div>
+
+        <div class="form-group mr-2 d-inline-block">
+            @Html.DropDownListFor(n => n.cat_id, (SelectList)ViewBag.catalog, "Choose Category", new { @class = "form-control  " })
+        </div>
+
+
+
+        <!---------------->
+        <div class="form-group">
+
+            <select id="FilterDate" class="form-control mr-2">
+                <option value="0">All Time</option>
+                <option value="-1">YesterDay</option>
+                <option value="-2">Last 2 Days</option>
+                <option value="-3">Last 3 Days</option>
+                <option value="-4">Last 4 Days</option>
+
+            </select>
+        </div>
+        <!----->
+        <div class="form-group">
+            <select id="projectStatus" class="form-control mr-2">
+                <option value="0">project status</option>
+                <option value="1">funded</option>
+                <option value="2">Not funded</option>
+            </select>
+        </div>
+        <div class="form-group mr-2 ">
+            <label for="mostLikes" class="">Top Likes</label>
+            <input type="checkbox" name="mostLikes" class="form-check-input ml-2" id="mostLikes" />
+        </div>
+    </form>
+</div>
+<section class="container mt-5" id="d3">
+</section>
+@section scripts{
+    <script>
+        var id = $("#cat_id").val();
+        var title = $("#title").val();
+        var projStatus = $("#projectStatus").val();
+        var mostLikes = $('#mostLikes').prop("checked");
+        var filterDate = $("#FilterDate").val();
+        $(window).ready(function () {
+            $("#d3").load("/search/showProjects/" + id);
+        })
+        $("#cat_id").on("change", function () {
+            id = $("#cat_id").val();
+            title = $("#title").val();
+            projStatus = $("#projectStatus").val();
+            mostLikes = $('#mostLikes').prop("checked");
+            filterDate = $("#FilterDate").val();
+            $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+        })
+        $("#title").on("keyup", function () {
+            id = $("#cat_id").val();
+            title = $("#title").val();
+            projStatus = $("#projectStatus").val();
+            mostLikes = $('#mostLikes').prop("checked");
+            filterDate = $("#FilterDate").val();
+            $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+        })
+
+        $("#projectStatus").on("change", function () {
+            id = $("#cat_id").val();
+            title = $("#title").val();
+            projStatus = $("#projectStatus").val();
+            mostLikes = $('#mostLikes').prop("checked");
+            filterDate = $("#FilterDate").val();
+            $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+        })
+        //-------------------------------------
+
+        $('#mostLikes').click(function () {
+            id = $("#cat_id").val();
+            title = $("#title").val();
+            projStatus = $("#projectStatus").val();
+            mostLikes = $('#mostLikes').prop("checked");
+            filterDate = $("#FilterDate").val();
+            if ($('#mostLikes').prop("checked") == true) {
+                $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+            }
+            else if ($('#mostLikes').prop("checked") == false) {
+                console.log("Checkbox is unchecked.");
+                $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+            }
+        });
+
+        //-----------------------------------
+
+        $("#FilterDate").on("change", function () {
+            id = $("#cat_id").val();
+            title = $("#title").val();
+            projStatus = $("#projectStatus").val();
+            mostLikes = $('#mostLikes').prop("checked")
+            filterDate = $("#FilterDate").val();
+            $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=${mostLikes}&projectstatus=${projStatus}&filterDate=${filterDate}`);
+        })
+        //-----------------------------------
+
+
+        function filter() {
+            var startDate = new Date($('#start').val());
+            var day = startDate.getDate();
+            var month = startDate.getMonth() + 1;
+            var year = startDate.getFullYear();
+            startDate = [day, month, year].join('-')
+            console.log(startDate);
+
+            var endDate = new Date($('#end').val());
+            var day = endDate.getDate();
+            var month = endDate.getMonth() + 1;
+            var year = endDate.getFullYear();
+            endDate = [day, month, year].join('-')
+
+            if ($('#mostLikes').prop("checked") == true) {
+                console.log("Checkbox is checked.");
+                $('#d3').load(`/search/showTitProjects/${id}?title=${title}&mostliks=true&projectstatus=${projStatus}&start=${startDate}&end=${endDate}`);
+            }
+            else if ($('#mostLikes').prop("checked") == false) {
+                console.log("Checkbox is unchecked.");
+                $("#d3").load(`/search/showTitProjects/${id}?title=${title}&mostliks=false&projectstatus=${projStatus}&start=${startDate}&end=${endDate}`);
+            }
+        }
+
+                        //-----------------------------
+
+
+    </script>
+}
+
+@section cssStyle{
+    <style>
+        .search-project {
+            height: 38px
+        }
+    </style>
+    
+}
